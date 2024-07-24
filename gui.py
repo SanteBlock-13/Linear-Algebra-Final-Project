@@ -4,18 +4,21 @@ import dearpygui.dearpygui as dpg
 dpg.create_context()
 
 # Setting window attributes of app
-def source_dtype():
-    """ Set data type of matrix values received from user """
-    return 'double_value'
+source_dtype_dou = 'double_value'
+source_dtype_int = 'int_value'
 
 with dpg.window(tag = 'pri'):
     # Opening prompt of app
+    col_num = 5 # Column number of matrix
+    row_num = 5 # Row number of matrix
+
+    dpg.add_text('Enter desired size of matrix')
+    
+    dpg.add_input_int(label = 'Row number', source = source_dtype_int)
+    dpg.add_input_int(label = 'Column number', source = source_dtype_int)
+    dpg.add_button(tag = 'rcnum', label = 'Enter')    
+
     dpg.add_text('Enter matrix values for solution retrieval where Ax = 0 and Ax = b')
-
-    # Creating columns and rows of matrix value input area
-    col_num = 5
-    row_num = 5
-
     with dpg.table(
         header_row = True, 
         row_background = True,
@@ -34,7 +37,7 @@ with dpg.window(tag = 'pri'):
         for r in range(row_num):
             with dpg.table_row():
                 for c in range(col_num):
-                    dpg.add_input_double(label = f'r{r + 1}', source = source_dtype())
+                    dpg.add_input_double(label = f'r{r + 1}', source = source_dtype_dou)
 
 
 # Creating window and exceution loop of app
